@@ -53,14 +53,9 @@ class FaceDetection extends AiModel {
         interpolatedScaleAspectRatio: 1.0,
         fixedAnchorSize: true);
     try {
-      final interpreterOptions = InterpreterOptions();
-
       _anchors = generateAnchors(anchorOption);
       interpreter = interpreter ??
-          await Interpreter.fromAsset(
-            ModelFile.faceDetection,
-            options: interpreterOptions,
-          );
+          await createInterpreterFromAsset(ModelFile.faceDetection);
 
       final outputTensors = interpreter!.getOutputTensors();
 

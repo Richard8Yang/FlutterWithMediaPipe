@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+//import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../constants/data.dart';
 import '../../services/model_inference_service.dart';
@@ -125,9 +125,9 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
   AppBar get _buildAppBar => AppBar(
         title: Text(
           models[widget.index]['title']!,
-          style: TextStyle(
+          style: const TextStyle(
               color: Colors.white,
-              fontSize: ScreenUtil().setSp(28),
+              fontSize: 28,//ScreenUtil().setSp(28),
               fontWeight: FontWeight.bold),
         ),
       );
@@ -138,7 +138,7 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
           IconButton(
             onPressed: () => _cameraDirectionToggle,
             color: Colors.white,
-            iconSize: ScreenUtil().setWidth(30.0),
+            iconSize: 30,//ScreenUtil().setWidth(30.0),
             icon: const Icon(
               Icons.cameraswitch,
             ),
@@ -146,7 +146,7 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
           IconButton(
             onPressed: () => _imageStreamToggle,
             color: Colors.white,
-            iconSize: ScreenUtil().setWidth(30.0),
+            iconSize: 30,//ScreenUtil().setWidth(30.0),
             icon: const Icon(
               Icons.filter_center_focus,
             ),

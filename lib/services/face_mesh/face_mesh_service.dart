@@ -29,10 +29,7 @@ class FaceMesh extends AiModel {
   @override
   Future<void> loadModel() async {
     try {
-      final interpreterOptions = InterpreterOptions();
-
-      interpreter ??= await Interpreter.fromAsset(ModelFile.faceMesh,
-          options: interpreterOptions);
+      interpreter ??= await createInterpreterFromAsset(ModelFile.faceMesh);
 
       final outputTensors = interpreter!.getOutputTensors();
 

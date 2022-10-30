@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+//import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../constants/data.dart';
 import 'widgets/model_card.dart';
@@ -34,11 +34,11 @@ class _HomePageState extends State<HomePage> {
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'Select Your Model',
           style: TextStyle(
               color: Colors.white,
-              fontSize: ScreenUtil().setSp(28),
+              fontSize: 28,//ScreenUtil().setSp(28),
               fontWeight: FontWeight.bold),
         ),
       ),
@@ -101,7 +101,7 @@ class _ModelPreview extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        height: ScreenUtil().setHeight(450.0),
+        height: 450,//ScreenUtil().setHeight(450.0),
         child: PageView.builder(
           controller: pageController,
           physics: const BouncingScrollPhysics(),

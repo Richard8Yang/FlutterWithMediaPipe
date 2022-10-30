@@ -29,10 +29,7 @@ class Pose extends AiModel {
   @override
   Future<void> loadModel() async {
     try {
-      final interpreterOptions = InterpreterOptions();
-
-      interpreter ??= await Interpreter.fromAsset(ModelFile.pose,
-          options: interpreterOptions);
+      interpreter ??= await createInterpreterFromAsset(ModelFile.pose);
 
       final outputTensors = interpreter!.getOutputTensors();
 

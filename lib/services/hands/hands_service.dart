@@ -31,10 +31,7 @@ class Hands extends AiModel {
   @override
   Future<void> loadModel() async {
     try {
-      final interpreterOptions = InterpreterOptions();
-
-      interpreter ??= await Interpreter.fromAsset(ModelFile.hands,
-          options: interpreterOptions);
+      interpreter ??= await createInterpreterFromAsset(ModelFile.hands);
 
       final outputTensors = interpreter!.getOutputTensors();
 
@@ -76,6 +73,7 @@ class Hands extends AiModel {
     TensorBuffer outputLandmarks = TensorBufferFloat(outputShapes[0]);
     TensorBuffer outputExist = TensorBufferFloat(outputShapes[1]);
     TensorBuffer outputScores = TensorBufferFloat(outputShapes[2]);
+    TensorBuffer outputScaleWorldLandmarks = TensorBufferFloat(outputShapes[3]);
 
     final inputs = <Object>[inputImage.buffer];
 
@@ -83,12 +81,12 @@ class Hands extends AiModel {
       0: outputLandmarks.buffer,
       1: outputExist.buffer,
       2: outputScores.buffer,
+      3: outputScaleWorldLandmarks,
     };
 
     interpreter!.runForMultipleInputs(inputs, outputs);
 
-    if (outputExist.getDoubleValue(0) < exist_threshold ||
-        outputScores.getDoubleValue(0) < score_threshold) {
+    if (outputExist.getDoubleValue(0) < exist_threshold) {
       return null;
     }
 
