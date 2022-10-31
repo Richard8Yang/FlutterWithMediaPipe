@@ -6,6 +6,7 @@ import '../utils/isolate_utils.dart';
 import 'ai_model.dart';
 import 'face_detection/face_detection_service.dart';
 import 'face_mesh/face_mesh_service.dart';
+import 'face_mesh/face_mesh_refined_service.dart';
 import 'hands/hands_service.dart';
 import 'pose/pose_service.dart';
 import 'service_locator.dart';
@@ -15,6 +16,7 @@ enum Models {
   FaceMesh,
   Hands,
   Pose,
+  FaceMeshRefined,
 }
 
 class ModelInferenceService {
@@ -51,6 +53,10 @@ class ModelInferenceService {
       case Models.FaceMesh:
         model = locator<FaceMesh>();
         handler = runFaceMesh;
+        break;
+      case Models.FaceMeshRefined:
+        model = locator<FaceMesh>();
+        handler = runFaceMeshRefined;
         break;
       case Models.Hands:
         model = locator<Hands>();
